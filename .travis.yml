@@ -3,10 +3,10 @@ node_js:
   - 13
 
 env:
-- SERVICENAME=udagram-api-feed
-- SERVICENAME=udagram-api-user
-- SERVICENAME=udagram-reverseproxy
-- SERVICENAME=udagram-frontend
+- SERVICENAME=udagram-api-feed:v1
+- SERVICENAME=udagram-api-user:v1
+- SERVICENAME=udagram-reverseproxy:v1
+- SERVICENAME=udagram-frontend:v1
 
 services:
   - docker
@@ -22,7 +22,7 @@ before_script:
 script:
   - docker --version # print the version for logging
   - docker build -t $SERVICENAME .
-  - docker tag $SERVICENAME cercuit/$SERVICENAME:latest
+  - docker tag $SERVICENAME cercuit/$SERVICENAME:v1
 
 # Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
 after_success:

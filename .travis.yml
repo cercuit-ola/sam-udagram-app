@@ -1,30 +1,27 @@
 language: node_js
 node_js:
   - 13
+services: docker
 
 env:
-- SERVICENAME=udagram-api-feed:v1
-- SERVICENAME=udagram-api-user:v1
-- SERVICENAME=udagram-reverseproxy:v1
-- SERVICENAME=udagram-frontend:v1
+  - DOCKER_COMPOSE_VERSION=1.27.4
 
-services:
-  - docker
+before_install:
+  - docker -v && docker-compose -v
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+  - chmod +x ./kubectl
+  - sudo mv ./kubectl /usr/local/bin/kubectl
 
-# Pre-testing installs
 install:
-  - echo "nothing needs to be installed"
+  - docker-compose -f deployment/docker/docker-compose-build.yml build --parallel
 
-# Scripts to be run such as tests
-before_script:
-  - echo "no tests"
-
-script:
-  - docker --version # print the version for logging
-  - docker build -t $SERVICENAME .
-  - docker tag $SERVICENAME cercuit/$SERVICENAME:v1
-
-# Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
-after_success:
-  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USERNAME" --password-stdin
-  - docker push cercuit/$SERVICENAME
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: bash ./deployment/docker_deploy.sh
+  on:
+    branch: main

@@ -1,4 +1,4 @@
-Convert an application from a monolith architecture to a microservices architecture
+#Convert an application from a monolith architecture to a microservices architecture
 The goal accomplished with this project is
 Refactor an existing monolith application to microservices.
 
@@ -6,7 +6,7 @@ Set up each microservice to be run in its own Docker Container.
 
 Set up a CI/CD pipeline using Travis CI to deploy the contianers to AWS EKS.
 
-Getting Started
+#Getting Started
 The application is split into four directories - frontend, backend /user and /feed services, and the reverse proxy.
 
 To begin,

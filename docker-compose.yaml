@@ -39,7 +39,7 @@ services:
   udagram-frontend:
     image: cercuit/udagram-frontend
     ports:
-      - "8100:80"
+      - "8080:80"
 
 
 

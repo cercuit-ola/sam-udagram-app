@@ -14,7 +14,7 @@ before_install:
 
 # Pre-testing installs
 install:
-  - docker-compose -f docker-compose-build.yaml build --parallel --no-cache
+  - docker-compose -f docker-compose-build.yaml build --parallel 
 
 # Scripts to be run such as tests
 before_script:
@@ -40,4 +40,4 @@ after_success:
   - docker push cercuit/udagram-api-feed:v1
   - docker push cercuit/udagram-api-user:v1
   - docker push cercuit/udagram-frontend:v1
-  - docker push /udagram-reverseproxy:v1
+  - docker push cercuit/udagram-reverseproxy:v1

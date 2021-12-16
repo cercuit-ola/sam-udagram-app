@@ -3,7 +3,7 @@
 export POSTGRES_USERNAME=cercuit
 export POSTGRES_PASSWORD=1stbillion
 export POSTGRES_HOST=cdr.cipky0gxx865.eu-west-3.rds.amazonaws.com
-export POSTGRES_DB=cercuit
+export POSTGRES_DB=cercuitt
 export AWS_BUCKET=sam-530680288131-dev
 export AWS_REGION=eu-west-3a
 export AWS_PROFILE=test

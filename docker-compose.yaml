@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 services:
   reverseproxy:
       image: cercuit/reverseproxy
@@ -39,8 +39,4 @@ services:
   udagram-frontend:
     image: cercuit/udagram-frontend
     ports:
-      - "8080:80"
-
-
-
-     
+      - "8100:80"

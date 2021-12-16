@@ -58,4 +58,4 @@ Clone the repo
 git clone https://github.com/edcsu/project.git
 Cd into each of the respective projects to install their respective dependencies.
 
-npm install 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
+npm install
